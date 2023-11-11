@@ -9,6 +9,13 @@ export class UIhelper {
       .click();
   }
 
+  static clickButtonByAriaLabel(label: string) {
+    return cy
+      .get(`[aria-label="${label}"]`)
+      .should('be.visible')
+      .click();
+  }
+
   static clickButtonFromNthChild(parentRef: string, index: number, label: string) {
     return cy
       .contains(`${parentRef}:nth-child(${index}) ${UIhelperPO.buttonLabel}`, label)
@@ -43,9 +50,9 @@ export class UIhelper {
     Common.waitForLoad();
   }
 
-  static verifyRowsInTable(rowTexts: string[]) {
+  static verifyRowsInTable(rowTexts: string[], elementRef = UIhelperPO.MuiTableRow) {
     rowTexts.forEach(rowText => {
-      cy.contains(UIhelperPO.MuiTableRow, rowText)
+      cy.contains(elementRef, rowText)
         .scrollIntoView()
         .should('be.visible');
     });

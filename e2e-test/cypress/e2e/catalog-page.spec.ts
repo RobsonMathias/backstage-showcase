@@ -1,6 +1,5 @@
 import { UIhelper } from '../utils/UIhelper';
 import { Common } from '../utils/Common';
-import {UIhelperPO} from '../support/pageObjects/global-obj';
 
 describe('Catalog page', () => {
   before(() => {
