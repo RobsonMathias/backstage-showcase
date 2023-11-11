@@ -9,6 +9,13 @@ export class UIhelper {
       .click();
   }
 
+  static clickButtonFromNthChild(parentRef: string, index: number, label: string) {
+    return cy
+      .contains(`${parentRef}:nth-child(${index}) ${UIhelperPO.buttonLabel}`, label)
+      .should('be.visible')
+      .click();
+  }
+
   static clickLink(linkText: string) {
     return cy
       .contains('a', new RegExp(`^\\s*${linkText}\\s*$`))
@@ -46,6 +53,12 @@ export class UIhelper {
 
   static verifyHeading(heading: string) {
     cy.contains('h1, h2, h3, h4, h5, h6', new RegExp(`^\\s*${heading}\\s*$`))
+      .scrollIntoView()
+      .should('be.visible');
+  }
+
+  static verifyText(elementRef: string, text: string) {
+    cy.contains(elementRef, text)
       .scrollIntoView()
       .should('be.visible');
   }
